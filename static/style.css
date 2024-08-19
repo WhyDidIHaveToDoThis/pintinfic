@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: linear-gradient(30deg, rgb(151,0,0) 20%, rgb(17,17,17) 80%) no-repeat;
+}
+
+#swiper {
+  height: 70vh;
+  aspect-ratio: 2 / 3;
+  perspective: 1000px;
+  perspective-origin: center 50%;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: translateZ(calc(-30px * var(--i))) translateY(calc(-20px * var(--i))) rotate(calc(-4deg * var(--i)));
+  filter: drop-shadow(2px 2px 20px rgba(0, 0, 0, 0.5));
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(51,51,51); /* Ensure the card has a background */
+  color: rgb(247,247,247); /* Ensure text is visible */
+  padding: 20px; /* Add padding for text */
+  text-align: center; /* Center-align text */
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.card a {
+  color: rgb(89,152,214); /* Link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.card a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+
+#like,
+#dislike {
+  font-size: 16vh;
+  border-radius: 50%;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  animation-name: animation1;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+  /* don't run animation at the beginning */
+  animation-play-state: paused;
+}
+
+#like.trigger,
+#dislike.trigger {
+  animation-name: animation2;
+}
+
+#like {
+  color: red;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#dislike {
+  color: #ccc;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes animation1 {
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes animation2 {
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+  #swiper {
+    height: 50vh;
+    aspect-ratio: 1 / 1; /* Adjust aspect ratio for smaller screens */
+  }
+
+  #like,
+  #dislike {
+    font-size: 12vh; /* Smaller buttons on smaller screens */
+    padding: 15px;
+  }
+
+  .card h2 {
+    font-size: 1.5em; /* Adjust font size for smaller screens */
+  }
+
+  .card h3 {
+    font-size: 1em;
+  }
+
+  .card p {
+    font-size: 1em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #swiper {
+    height: 40vh;
+    aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
+  }
+
+  #like,
+  #dislike {
+    font-size: 10vh; /* Further reduce button size */
+    padding: 10px;
+  }
+
+  .card h2 {
+    font-size: 1.2em; /* Adjust font size further for very small screens */
+  }
+
+  .card h3 {
+    font-size: 0.9em;
+  }
+
+  .card p {
+    font-size: 0.9em;
+  }
+}
